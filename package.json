@@ -1,0 +1,14 @@
+{
+  "name": "exit-build-early",
+  "private": true,
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "prebuild": "rm -rf build",
+    "build": "mkdir build && cp index.html build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
