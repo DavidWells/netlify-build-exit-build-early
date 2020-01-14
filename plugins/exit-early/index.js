@@ -19,7 +19,7 @@ module.exports = function exitEarlyPlugin(config) {
         console.log('>> EXIT BUILD BC HTML HAS NOT CHANGED\n')
         process.exit(1)
       }
-      console.log('Continue build because HTML files created or changed', htmlFiles.getKeyedPaths())
+      // console.log('Continue build because HTML files created or changed', htmlFiles.getKeyedPaths())
     }
   }
 }
