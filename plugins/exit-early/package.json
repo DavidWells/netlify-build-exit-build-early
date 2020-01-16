@@ -11,8 +11,5 @@
   "license": "MIT",
   "engines": {
     "node": ">=8.3.0"
-  },
-  "dependencies": {
-    "@netlify/git-utils": "0.0.1"
   }
 }
