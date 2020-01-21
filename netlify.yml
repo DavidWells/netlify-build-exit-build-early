@@ -1,7 +1,8 @@
 build:
   publish: build
-  command: npm run build
   functions: functions
+  lifecycle:
+    onBuild: npm run build
 
 plugins:
   - package: ./plugins/exit-early
