@@ -4,8 +4,10 @@ module.exports = function exitEarlyPlugin(config) {
     onInit: async ({ utils }) => {
       console.log('utils')
       console.log(require('util').inspect(utils, {showHidden: false, depth: null}))
-      const { git } = utils
-      console.log('git', git)
+      const { git, run } = utils
+
+      run('echo "hi"')
+
       /* Do stuff if files modified */
       if (git.modifiedFiles.length) {
         console.log('Modified files:', git.modifiedFiles)
