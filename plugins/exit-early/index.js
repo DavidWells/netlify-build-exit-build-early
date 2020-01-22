@@ -2,7 +2,8 @@ module.exports = function exitEarlyPlugin(config) {
   return {
     name: 'netlify-plugin-exit-build-early',
     onInit: async ({ utils }) => {
-      console.log('utils', utils)
+      console.log('utils')
+      console.log(require('util').inspect(utils, {showHidden: false, depth: null}))
       const { git } = utils
       console.log('git', git)
       /* Do stuff if files modified */
