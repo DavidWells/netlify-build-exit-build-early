@@ -13,7 +13,7 @@ module.exports = function exitEarlyPlugin(config) {
 
       const { git, run } = utils
 
-      run.command('echo "hi"')
+      await run.command('echo "hi"')
 
       /* Do stuff if files modified */
       if (git.modifiedFiles.length) {
