@@ -31,7 +31,8 @@ module.exports = function exitEarlyPlugin(config) {
       console.log('js files git info:', jsFiles)
 
       // No JS files added/deleted/changed
-      if (!jsFiles.edited.length || !htmlFiles.edited.length) {
+      if (!jsFiles.edited.length && !htmlFiles.edited.length) {
+        console.log('No files we care about changed. Exit early')
         process.exit(0)
       }
       console.log('Continue build because HTML/JS files created, changed or deleted')
