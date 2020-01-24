@@ -1,9 +1,15 @@
+const { inspect } = require('util')
+
+function deepLog(obj) {
+  console.log(inspect(obj, {showHidden: false, depth: null}))
+}
+
 module.exports = function exitEarlyPlugin(config) {
   return {
     name: 'netlify-plugin-exit-build-early',
     onInit: async ({ utils }) => {
       console.log('utils')
-      console.log(require('util').inspect(utils, {showHidden: false, depth: null}))
+      deepLog(utils)
       const { git, run } = utils
 
       run('echo "hi"')
@@ -19,15 +25,16 @@ module.exports = function exitEarlyPlugin(config) {
       const htmlFiles = git.fileMatch('**/*.html')
       console.log('html files git info:', htmlFiles)
 
-      // Find all html files git status
+      // Find all js files git status
       const jsFiles = git.fileMatch('**/*.js')
       console.log('js files git info:', jsFiles)
 
-      // if (!htmlFiles.edited) {
-      //   console.log('>> EXIT BUILD BC HTML HAS NOT CHANGED\n')
-      //   process.exit(1)
-      // }
-      // console.log('Continue build because HTML files created or changed', htmlFiles.getKeyedPaths())
+      // No JS files added/deleted/changed
+      if (!jsFiles.edited.length || !htmlFiles.edited.length) {
+        process.exit(0)
+      }
+      console.log('Continue build because HTML/JS files created, changed or deleted')
+      console.log(htmlFiles.edited.concat(jsFiles.edited))
     }
   }
 }
