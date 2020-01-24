@@ -10,9 +10,10 @@ module.exports = function exitEarlyPlugin(config) {
     onInit: async ({ utils }) => {
       console.log('utils')
       deepLog(utils)
+
       const { git, run } = utils
 
-      run('echo "hi"')
+      run.command('echo "hi"')
 
       /* Do stuff if files modified */
       if (git.modifiedFiles.length) {
